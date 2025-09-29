@@ -1,17 +1,18 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/fevunge/let-go/loop"
-	"github.com/fevunge/let-go/variables"
+	"github.com/fevunge/let-go/controller"
+	"github.com/labstack/echo/v4"
 )
 
-const username = "fevunge"
-
 func main() {
-	number := 42
-	variables.Variables()
-	fmt.Println(number, username)
-	loop.Loop()
+	e := echo.New()
+
+	e.GET("/", func(c echo.Context) error {
+		return c.String(200, "Welcome to LetGo API")
+	})
+
+	controller.CreateUser(e)
+
+	e.Logger.Fatal(e.Start(":1323"))
 }
