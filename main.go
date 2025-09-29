@@ -3,10 +3,15 @@ package main
 import (
 	"fmt"
 
-	"github.com/fevunge/let-go/hello"
+	"github.com/fevunge/let-go/loop"
+	"github.com/fevunge/let-go/variables"
 )
 
+const username = "fevunge"
+
 func main() {
-	fmt.Println("Hello, World!")
-	hello.Welcome("Gopher")
+	number := 42
+	variables.Variables()
+	fmt.Println(number, username)
+	loop.Loop()
 }
