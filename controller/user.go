@@ -10,13 +10,14 @@ func CreateUser(e *echo.Echo) {
 	user := e.Group("/users")
 	user.POST("/", func(c echo.Context) error {
 		name := c.FormValue("name")
-		email := c.FormValue("email")
 		username := c.FormValue("username")
 		password := c.FormValue("password")
 
-		model.CreateUser(name, username, password)
-
-		response := "Create User: " + name + " with email: " + email + username + " and password: " + password
-		return c.String(201, response)
+		response, err := model.CreateUser(name, username, password)
+		if err != nil {
+			errorMessage := map[string]string{"error": err.Error()}
+			return c.JSON(500, errorMessage)
+		}
+		return c.JSON(201, response)
 	})
 }
