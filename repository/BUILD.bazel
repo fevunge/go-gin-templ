@@ -1,0 +1,16 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "repository",
+    srcs = [
+        "link.go",
+        "user.go",
+    ],
+    importpath = "github.com/fevunge/let-go/repository",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//entity",
+        "//prisma/db",
+        "//service/database",
+    ],
+)

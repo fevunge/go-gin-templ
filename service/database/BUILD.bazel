@@ -1,0 +1,9 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "database",
+    srcs = ["prisma.go"],
+    importpath = "github.com/fevunge/let-go/service/database",
+    visibility = ["//visibility:public"],
+    deps = ["//prisma/db"],
+)
