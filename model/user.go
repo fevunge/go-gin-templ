@@ -19,3 +19,11 @@ func CreateUser(name, username, password string) (entity.User, error) {
 	repository.SaveUser(user)
 	return user, err
 }
+
+func GetProfile(username string) (entity.User, error) {
+	user, err := repository.FindUserByUsername(username)
+	if err != nil {
+		log.Debug("error finding user by username:", err)
+	}
+	return user, err
+}
