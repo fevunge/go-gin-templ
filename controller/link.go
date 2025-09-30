@@ -2,4 +2,5 @@
 package controller
 
 func AddLink() {
+	
 }
