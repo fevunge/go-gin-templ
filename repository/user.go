@@ -23,9 +23,9 @@ func FindUserByUsername(username string) (entity.User, error) {
 		return entity.User{}, nil
 	}
 	user := entity.User{
-		Name:     userModel.Name,
-		Username: userModel.Username,
-		Password: userModel.Password,
+		Name:     string(userModel.Name),
+		Username: string(userModel.Username),
+		Password: string(userModel.Password),
 	}
 	return user, nil
 }
