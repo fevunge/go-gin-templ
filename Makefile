@@ -22,7 +22,8 @@ setup: install_deps
 	$(CC) mod tidy
 
 $(NAME):
-	go build $(CFLAGS) -o $(NAME) $(SRC)
+	$(CC) build $(CFLAGS) -o $(NAME) $(SRC)
 
-run: 
+run:
+	$(CC) run $(SRC)
 
