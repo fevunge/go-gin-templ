@@ -26,11 +26,11 @@ func GetUserByUsername(username string) (*db.UserModel, error) {
 }
 
 func validUsername(username string) bool {
-	if user, err := GetUserByUsername(username); err == nil {
-		if user != nil {
-			return false
-		}
-		return true
+	if user, err := GetUserByUsername(username); err == nil || user != nil {
+		return false
+	}
+	if len(username) < 3 || len(username) > 12 {
+		return false
 	}
 	return true
 }
