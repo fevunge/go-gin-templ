@@ -2,7 +2,7 @@
 package model
 
 import (
-	"github.com/labstack/gommon/log"
+	"errors"
 
 	"github.com/fevunge/let-go/entity"
 	"github.com/fevunge/let-go/repository"
@@ -11,12 +11,21 @@ import (
 
 func CreateUser(name, username, password string) (entity.User, error) {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	log.Debug("Hashed password:", string(hashedPassword))
 	if err != nil {
-		log.Debug("error hashing password:", err)
+		return entity.User{}, err
 	}
-	user := entity.User{name, username, string(hashedPassword), "", []entity.Link{}}
+
+	user := entity.User{
+		name,
+		username,
+		string(hashedPassword),
+		"",
+		[]entity.Link{},
+	}
 	repository.SaveUser(user)
-	return user, err
+	return user, nil
 }
 
+func GetUserByUsername(username string) (*entity.User, error) {
+	return nil, errors.New("not implemented")
+}
