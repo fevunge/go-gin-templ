@@ -11,44 +11,6 @@ import (
 
 var prisma = database.PrismaClient()
 
-func FindUserByUsername(username string) (entity.User, error) {
-	ctxt := context.Background()
-	userModel, err := prisma.User.FindUnique(
-		db.User.Username.Equals(username),
-	).Exec(ctxt)
-	if err != nil {
-		return entity.User{}, err
-	}
-	if userModel == nil {
-		return entity.User{}, nil
-	}
-	user := entity.User{
-		Name:     string(userModel.Name),
-		Username: string(userModel.Username),
-		Password: string(userModel.Password),
-	}
-	return user, nil
-}
-
-func FindUserByName(name string) (entity.User, error) {
-	ctxt := context.Background()
-	userModel, err := prisma.User.FindUnique(
-		db.User.Name.Equals(name),
-	).Exec(ctxt)
-	if err != nil {
-		return entity.User{}, err
-	}
-	if userModel == nil {
-		return entity.User{}, nil
-	}
-	user := entity.User{
-		Name:     userModel.Name,
-		Username: userModel.Username,
-		Password: userModel.Password,
-	}
-	return user, nil
-}
-
 func SaveUser(user entity.User) (*db.UserModel, error) {
 	ctxt := context.Background()
 
