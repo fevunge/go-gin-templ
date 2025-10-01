@@ -2,17 +2,13 @@ package main
 
 import (
 	"github.com/fevunge/let-go/controller"
-	"github.com/labstack/echo/v4"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	e := echo.New()
+	router := gin.Default()
 
-	e.GET("/", func(c echo.Context) error {
-		return c.String(200, "Welcome to LetGo API")
-	})
+	controller.CreateUser(router)
 
-	controller.CreateUser(e)
-
-	e.Logger.Fatal(e.Start(":1323"))
+	router.Run(":8080")
 }
