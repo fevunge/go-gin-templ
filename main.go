@@ -9,6 +9,7 @@ func main() {
 	router := gin.Default()
 
 	controller.CreateUser(router)
+	controller.GetName(router)
 
 	router.Run(":8080")
 }
